@@ -6,13 +6,14 @@ $workday = true;
 $countdayoff = 0;
 
 echo "Введите месяц: " . PHP_EOL;
+
 $mounth = fgets(STDIN);
 
 echo "Введите год: " . PHP_EOL;
 
 $years = fgets(STDIN);
 
-$countdays = cal_days_in_month(CAL_GREGORIAN, $mounth, $years); // 31
+$countdays = cal_days_in_month(CAL_GREGORIAN, $mounth, $years);
 
 
 for ($i = 1; $i <= $countdays; $i++) {
@@ -21,9 +22,9 @@ for ($i = 1; $i <= $countdays; $i++) {
     $dt = DateTimeImmutable::createFromTimeStamp($timestamp);
     $dtjul = juliantojd($mounth, $i, $years);
     $dtdayoff = jddayofweek($dtjul, 0);
+    echo $dtdayoff;
 
-
-    if ($dtdayoff === 6 || $dtdayoff === 0 ||  $workday === false) {
+    if ($dtdayoff === 5 || $dtdayoff === 6 ||  $workday === false) {
         $workday = false;
         $countdayoff ++;
         $day = $dt->format('Y-m-d');
